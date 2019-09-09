@@ -24,6 +24,10 @@ public class Sentence {
     @Column(unique = true)
     private String sentenceContent;
 
+    public Sentence(@NotBlank String sentenceContent) {
+        this.sentenceContent = sentenceContent;
+    }
+
     public Long getId() {
         return id;
     }

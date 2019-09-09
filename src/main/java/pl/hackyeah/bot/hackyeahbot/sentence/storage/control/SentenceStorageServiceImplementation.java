@@ -9,20 +9,20 @@ import java.util.List;
 @Service
 public class SentenceStorageServiceImplementation implements SentenceStorageService {
 
-    private SentenceRepository sentenceRepository;
+    private SentenceStorageRepository sentenceStorageRepository;
 
     @Override
     public List<Sentence> getAllSentences() {
-        return sentenceRepository.findAll();
+        return sentenceStorageRepository.findAll();
     }
 
     @Override
     public Sentence createSentence(Sentence sentence) {
-        return sentenceRepository.save(sentence);
+        return sentenceStorageRepository.save(sentence);
     }
 
     @Autowired
-    public void setSentenceRepository(SentenceRepository sentenceRepository) {
-        this.sentenceRepository = sentenceRepository;
+    public void setSentenceStorageRepository(SentenceStorageRepository sentenceStorageRepository) {
+        this.sentenceStorageRepository = sentenceStorageRepository;
     }
 }
