@@ -6,8 +6,11 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFac
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.ops.transforms.Transforms;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.hackyeah.bot.hackyeahbot.sentence.similarity.entity.SentenceSimilarityDTO;
+import pl.hackyeah.bot.hackyeahbot.sentence.storage.control.SentenceStorageService;
+import pl.hackyeah.bot.hackyeahbot.sentence.storage.entity.Sentence;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,12 +23,8 @@ public class SentenceSimilarityServiceImplementation implements SentenceSimilari
     private static final double MINIMAL_SIMILARITY_THRESHOLD = 0.1;
     private static final int DEFAULT_MAX_SIMILAR_SENTENCES_COUNT = 5;
 
-    //TODO: load existing to cache and reload cache
-    private static final List<String> sentencesInDatabase = List.of(            "I need to contact my manager",
-            "I need to talk with my supervisor",
-            "I want to talk about pay rise",
-            "Is it possible to insure family member"
-    );
+    //TODO: use guava cache for loading all sentences from database?
+    private SentenceStorageService sentenceStorageService;
 
     private ParagraphVectors vectors;
 
@@ -56,7 +55,9 @@ public class SentenceSimilarityServiceImplementation implements SentenceSimilari
 
     private List<SentenceSimilarityDTO> getSimilarityWithSentencePatterns(String sentence, int maxSentencesCount) {
         INDArray sentenceVector = vectors.inferVector(sentence);
+        List<Sentence> sentencesInDatabase = sentenceStorageService.getAllSentences();
         List<SentenceSimilarityDTO> similarities =  sentencesInDatabase.stream()
+                .map(Sentence::getSentenceContent)
                 .map(sentenceToMatch -> mapSimilarityToSentenceVector(sentenceToMatch, sentenceVector))
                 .filter(sentenceSimilarity -> sentenceSimilarity.getSimilarity() > MINIMAL_SIMILARITY_THRESHOLD)
                 .sorted()
@@ -83,5 +84,10 @@ public class SentenceSimilarityServiceImplementation implements SentenceSimilari
         tokenizerFactory.setTokenPreProcessor(new StemmingStopWordsPreprocessor());
 
         return tokenizerFactory;
+    }
+
+    @Autowired
+    public void setSentenceStorageService(SentenceStorageService sentenceStorageService) {
+        this.sentenceStorageService = sentenceStorageService;
     }
 }

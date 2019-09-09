@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/sentence", produces = {"application/hal+json"})
+@RequestMapping(value = "/sentence/similarity", produces = {"application/hal+json"})
 public class SentenceSimilarityController {
 
     private SentenceSimilarityService sentenceSimilarityService;
