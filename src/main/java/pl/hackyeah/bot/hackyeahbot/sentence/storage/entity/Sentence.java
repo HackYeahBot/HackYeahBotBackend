@@ -24,6 +24,9 @@ public class Sentence {
     @Column(unique = true)
     private String sentenceContent;
 
+    public Sentence() {
+    }
+
     public Sentence(@NotBlank String sentenceContent) {
         this.sentenceContent = sentenceContent;
     }
