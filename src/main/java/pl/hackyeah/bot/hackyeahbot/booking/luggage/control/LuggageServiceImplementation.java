@@ -4,16 +4,16 @@ import org.springframework.stereotype.Service;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.*;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class LuggageServiceImplementation implements LuggageService {
 
     @Override
-    public LuggageResultDTO getLuggageForPersonalPreferernces(TripType tripType){
-        switch (tripType) {
+    public LuggageResultDTO getLuggageForPersonalPreferences(LuggageBookingParameters bookingParameters){
+        TripDuration tripDuration = bookingParameters.getTripDuration();
+
+        switch (tripDuration) {
             case SHORT:
                 return getSmallBag();
             case MEDIUM:
