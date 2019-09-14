@@ -3,9 +3,7 @@ package pl.hackyeah.bot.hackyeahbot.booking.seats.control;
 import pl.hackyeah.bot.hackyeahbot.booking.seats.entity.SeatsResultDTO;
 import pl.hackyeah.bot.hackyeahbot.user.entity.UserPersona;
 
-import java.util.List;
-
 public interface SeatsBookingService {
 
-    List<SeatsResultDTO> getSeatsForPersona(UserPersona userPersona);
+    SeatsResultDTO getSeatsForPersona(UserPersona userPersona);
 }
