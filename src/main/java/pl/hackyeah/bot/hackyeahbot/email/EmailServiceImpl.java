@@ -43,13 +43,13 @@ public class EmailServiceImpl implements EmailService {
     private String generateConfirmMessageBody(String flightClass, double cost){
         return "You have just been robbed by flight company <br>" +
                 "WEATHER INFO: <br>" +
-                getExtrasInCaseOfWeather() +
+                getExtrasInCaseOfWeather("London") +
                 "<br>" +
                 "DANGER INFO:" +
-                getCommonDangerInfoInRegion("LONDON") +
+                getCommonDangerInfoInRegion("London") +
                 "<br>" +
                 "VACCINES INFO: <br>" +
-                getNecessaryVaccinesInTrip("LONDON") +
+                getNecessaryVaccinesInTrip("London") +
                 "<br>" +
                 "";
     }
