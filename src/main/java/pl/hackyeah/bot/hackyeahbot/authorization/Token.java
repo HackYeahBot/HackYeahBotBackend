@@ -1,11 +1,16 @@
 package pl.hackyeah.bot.hackyeahbot.authorization;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Token {
     private String tokenContent;
-    private int durationTime;
     private Date tokenExpirationDate;
+
+    public Token(String tokenContent, Date tokenExpirationDate) {
+        this.tokenContent = tokenContent;
+        this.tokenExpirationDate = tokenExpirationDate;
+    }
 
     public String getTokenContent() {
         return tokenContent;
@@ -15,19 +20,11 @@ public class Token {
         this.tokenContent = tokenContent;
     }
 
-    public int getDurationTime() {
-        return durationTime;
-    }
-
-    public void setDurationTime(int durationTime) {
-        this.durationTime = durationTime;
-    }
-
     public Date getTokenExpirationDate() {
         return tokenExpirationDate;
     }
 
-    public void setTokenExpirationDate(Date tokenExpirationDate) {
+    public void setTokenExpirationDate(Timestamp tokenExpirationDate) {
         this.tokenExpirationDate = tokenExpirationDate;
     }
 }

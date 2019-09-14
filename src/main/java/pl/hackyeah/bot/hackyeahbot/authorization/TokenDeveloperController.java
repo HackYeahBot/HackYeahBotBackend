@@ -11,8 +11,8 @@ public class TokenDeveloperController {
     private TokenService tokenService;
 
     @GetMapping("/token")
-    public TokenAcquireDTO getToken() {
-        return tokenService.requestToken();
+    public Token getToken() {
+        return tokenService.getBearerToken();
     }
 
 }
