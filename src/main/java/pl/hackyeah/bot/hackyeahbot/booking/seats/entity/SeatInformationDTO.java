@@ -6,7 +6,7 @@ public class SeatInformationDTO {
     private int x;
     private int y;
     private String seatClass;
-    private int price;
+    private double price;
     private String benefits;
 
     public SeatInformationDTO(int x, int y, String seatClass, int price) {
@@ -48,11 +48,11 @@ public class SeatInformationDTO {
         this.seatClass = seatClass;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
