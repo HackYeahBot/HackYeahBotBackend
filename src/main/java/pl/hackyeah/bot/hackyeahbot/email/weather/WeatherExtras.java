@@ -12,13 +12,13 @@ public class WeatherExtras {
 
         switch (weatherType) {
             case RAIN:
-                return "Zamow taxe bo bendzie padac";
+                return "Prepare for rainy weather and call a cab!";
             case STORM:
-                return "UWAZAJ BARDZO BO GRZMI";
+                return "It's going to be stormy so we recommend taking a cab to the center.";
             case WINDY:
-                return "Potężna wichura łamie duże drzewa. Trzciną zaledwie tylko kołysze";
+                return "It's going to be windy. Potężna wichura łamie duże drzewa. Trzciną zaledwie tylko kołysze";
             case SUNNY:
-                return "Pewnie nie chce Ci się iść z buta/jechać MKIEM. ZAMÓW TAKSE POLAKU";
+                return "Good news! It's going to be sunny in your destination, enjoy!";
         }
         return "";
     }
