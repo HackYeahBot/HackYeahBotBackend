@@ -45,9 +45,6 @@ public class InitialSeatsLoader implements ApplicationListener<ContextRefreshedE
             return;
         }
 
-
-        //przeiterować po każdym i sprawdzić czy już istnieje
-        //chyba że da się jakoś bulkowo
         SEATS_TO_LOAD.stream().forEach(this::createSeatIfNotFound);
 
         isDataAlreadyLoaded = true;

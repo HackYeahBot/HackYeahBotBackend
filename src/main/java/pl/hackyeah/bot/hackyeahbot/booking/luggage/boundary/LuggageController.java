@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.control.LuggageService;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.LuggageBookingParameters;
-import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.LuggageBookingParametersDTO;
-import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.LuggageResultDTO;
+import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.dto.LuggageBookingParametersDTO;
+import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.dto.LuggageResultDTO;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.TripDuration;
 import pl.hackyeah.bot.hackyeahbot.user.entity.UserPersona;
 

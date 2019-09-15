@@ -2,6 +2,7 @@ package pl.hackyeah.bot.hackyeahbot.booking.extras.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.Extras;
 import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.ExtrasBookingParameters;
 import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.ExtrasInformationDTO;
 import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.ExtrasResultDTO;
@@ -16,10 +17,6 @@ public class ExtrasServiceImplementation implements ExtrasService {
 
     @Autowired
     ExtrasRepository extrasRepository;
-
-    private static final ExtrasInformationDTO DINNER_EXTRAS = new ExtrasInformationDTO("Dodatkowy posiłek", "Pyszny posiłek, który umili długi lot!");
-    private static final ExtrasInformationDTO WIFI_EXTRAS = new ExtrasInformationDTO("WI-FI Onboard", "Zapewniony dostęp do pokładowego WI-FI.");
-    private static final ExtrasInformationDTO STROLLER_EXTRAS = new ExtrasInformationDTO("Wózek dziecięcy", "Zwiększony komfort podróży dla Twojego dziecka.");
 
     @Override
     public ExtrasResultDTO getExtrasForPersonalPreferences(ExtrasBookingParameters bookingParameters) {
@@ -40,10 +37,8 @@ public class ExtrasServiceImplementation implements ExtrasService {
     }
 
     private ExtrasResultDTO getExtrasForBusiness() {
-        Set<ExtrasInformationDTO> highlightedExtras = getHighlightedExtras("DINNER");
+        Set<ExtrasInformationDTO> highlightedExtras = getHighlightedExtras("DINNER_EXTRAS");
         Set<ExtrasInformationDTO> regularExtras = getRegularExtras("WIFI_EXTRAS", "STROLLER_EXTRAS");
-//        Set<ExtrasInformationDTO> highlightedExtras = Set.of(DINNER_EXTRAS);
-//        Set<ExtrasInformationDTO> regularExtras = Set.of(WIFI_EXTRAS, STROLLER_EXTRAS);
 
         return new ExtrasResultDTO(highlightedExtras, regularExtras);
     }
@@ -51,8 +46,6 @@ public class ExtrasServiceImplementation implements ExtrasService {
     private ExtrasResultDTO getExtrasForFamily() {
         Set<ExtrasInformationDTO> highlightedExtras = getHighlightedExtras("STROLLER_EXTRAS");
         Set<ExtrasInformationDTO> regularExtras = getRegularExtras("WIFI_EXTRAS", "DINNER_EXTRAS");
-//        Set<ExtrasInformationDTO> highlightedExtras = Set.of(STROLLER_EXTRAS);
-//        Set<ExtrasInformationDTO> regularExtras = Set.of(WIFI_EXTRAS, DINNER_EXTRAS);
 
         return new ExtrasResultDTO(highlightedExtras, regularExtras);
     }
@@ -60,15 +53,15 @@ public class ExtrasServiceImplementation implements ExtrasService {
     private ExtrasResultDTO getExtrasForUncategorized() {
         Set<ExtrasInformationDTO> highlightedExtras = getHighlightedExtras("WIFI_EXTRAS");
         Set<ExtrasInformationDTO> regularExtras = getRegularExtras("DINNER_EXTRAS", "STROLLER_EXTRAS");
-//        Set<ExtrasInformationDTO> highlightedExtras = Set.of(WIFI_EXTRAS);
-//        Set<ExtrasInformationDTO> regularExtras = Set.of(DINNER_EXTRAS, STROLLER_EXTRAS);
 
         return new ExtrasResultDTO(highlightedExtras, regularExtras);
     }
 
     private Set<ExtrasInformationDTO> getHighlightedExtras(String highlighted) {
-        return extrasRepository.findAll().stream().filter(extra -> extra.getName().contains(highlighted))
-                .map(extras -> new ExtrasInformationDTO(extras.getName(), extras.getDescription()))
+        return extrasRepository.findAll()
+                .stream()
+                .filter(extra -> extra.getLabel().contains(highlighted))
+                .map(this::mapToDto)
                 .collect(Collectors.toSet());
     }
 
@@ -76,13 +69,17 @@ public class ExtrasServiceImplementation implements ExtrasService {
         return extrasRepository.findAll().stream()
                 .filter(extra -> {
                     for (String extraRegular :extras){
-                        if(extra.getName().contains(extraRegular))
+                        if(extra.getLabel().contains(extraRegular))
                             return true;
                     }
                     return false;
                 })
-                .map(extrasToMap -> new ExtrasInformationDTO(extrasToMap.getName(), extrasToMap.getDescription()))
+                .map(this::mapToDto)
                 .collect(Collectors.toSet());
+    }
+
+    private ExtrasInformationDTO mapToDto(Extras extras) {
+        return new ExtrasInformationDTO(extras.getName(), extras.getDescription());
     }
 
     public ExtrasRepository getExtrasRepository() {
