@@ -19,6 +19,7 @@ public class SeatsBookingController {
     @PostMapping
     SeatsResultDTO getSeatsForPersona(@RequestBody UserPersonaDTO userPersona) {
         //TODO: it should accept enum as requestBody
+
         return seatsBookingService.getSeatsForPersona(UserPersona.valueOf(userPersona.getUserPersona()));
     }
 

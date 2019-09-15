@@ -9,14 +9,14 @@ public class SeatInformationDTO {
     private double price;
     private String benefits;
 
-    public SeatInformationDTO(int x, int y, String seatClass, int price) {
+    public SeatInformationDTO(int x, int y, String seatClass, double price) {
         this.x = x;
         this.y = y;
         this.seatClass = seatClass;
         this.price = price;
     }
 
-    public SeatInformationDTO(int x, int y, String seatClass, int price, String benefits) {
+    public SeatInformationDTO(int x, int y, String seatClass, double price, String benefits) {
         this.x = x;
         this.y = y;
         this.seatClass = seatClass;

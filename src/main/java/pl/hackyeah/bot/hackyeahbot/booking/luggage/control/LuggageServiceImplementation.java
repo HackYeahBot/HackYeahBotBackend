@@ -1,5 +1,6 @@
 package pl.hackyeah.bot.hackyeahbot.booking.luggage.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.*;
 
@@ -8,6 +9,9 @@ import java.util.List;
 
 @Service
 public class LuggageServiceImplementation implements LuggageService {
+
+    @Autowired
+    LuggageRepository luggageRepository;
 
     @Override
     public LuggageResultDTO getLuggageForPersonalPreferences(LuggageBookingParameters bookingParameters){
@@ -43,4 +47,11 @@ public class LuggageServiceImplementation implements LuggageService {
                 new LuggageInformationDTO(LuggageType.LARGE));
     }
 
+    public LuggageRepository getLuggageRepository() {
+        return luggageRepository;
+    }
+
+    public void setLuggageRepository(LuggageRepository luggageRepository) {
+        this.luggageRepository = luggageRepository;
+    }
 }
