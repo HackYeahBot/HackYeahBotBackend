@@ -1,0 +1,11 @@
+@RELATION problem-complexity
+
+@ATTRIBUTE from NUMERIC
+@ATTRIBUTE to NUMERIC
+@ATTRIBUTE adults NUMERIC
+@ATTRIBUTE childNumber NUMERIC
+@ATTRIBUTE duration NUMERIC
+@ATTRIBUTE profile {business,family,long_fly}
+
+@DATA
+1,1,1,0,8,?
