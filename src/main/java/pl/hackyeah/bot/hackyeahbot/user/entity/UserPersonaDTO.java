@@ -4,6 +4,9 @@ public class UserPersonaDTO {
 
     private String userPersona;
 
+    public UserPersonaDTO() {
+    }
+
     public UserPersonaDTO(String userPersona) {
         this.userPersona = userPersona;
     }
