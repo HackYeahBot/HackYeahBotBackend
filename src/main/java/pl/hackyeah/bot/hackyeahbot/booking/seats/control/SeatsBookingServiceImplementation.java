@@ -48,7 +48,7 @@ public class SeatsBookingServiceImplementation implements SeatsBookingService {
 
     private SeatsResultDTO getBusinessSeats() {
 
-        List<Seat> availableSeats = seatRepository.findByBooked("true");
+        List<Seat> availableSeats = findAllAvailableSeats();
 
         List<SeatInformationDTO> highlightedSeats = availableSeats.stream()
                 .filter(seat -> seat.getSeatClass().equals(BUSINESS))
@@ -57,29 +57,12 @@ public class SeatsBookingServiceImplementation implements SeatsBookingService {
         List<SeatInformationDTO> regularSeats = availableSeats.stream()
                 .filter(seat -> seat.getSeatClass().equals(ECONOMIC) || seat.getSeatClass().equals(PREMIUM_ECONOMIC))
                 .map(seat -> new SeatInformationDTO(seat.getX(), seat.getY(), seat.getSeatClass(), seat.getPrice(), seat.getBenefits())).collect(Collectors.toList());
-//                List.of(
-//                        new SeatInformationDTO(1, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 2, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 4, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(2, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(3, 6, BUSINESS, 500, BUSINESS_BENEFITS)
-//                );
-
-
-//                List.of(
-//                        new SeatInformationDTO(10, 1, ECONOMIC, 220),
-//                        new SeatInformationDTO(12, 2, ECONOMIC, 220),
-//                        new SeatInformationDTO(13, 2, ECONOMIC, 220),
-//                        new SeatInformationDTO(8, 4, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(7, 1, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(6, 6, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS)
-//                );
 
         return new SeatsResultDTO(highlightedSeats, regularSeats);
     }
 
     private SeatsResultDTO getFamilySeats() {
-        List<Seat> availableSeats = seatRepository.findByBooked("true");
+        List<Seat> availableSeats = findAllAvailableSeats();
 
         List<SeatInformationDTO> highlightedSeats = availableSeats.stream()
                 .filter(seat -> seat.getSeatClass().equals(ECONOMIC))
@@ -88,31 +71,13 @@ public class SeatsBookingServiceImplementation implements SeatsBookingService {
         List<SeatInformationDTO> regularSeats = availableSeats.stream()
                 .filter(seat -> seat.getSeatClass().equals(BUSINESS) || seat.getSeatClass().equals(BUSINESS_BENEFITS))
                 .map(seat -> new SeatInformationDTO(seat.getX(), seat.getY(), seat.getSeatClass(), seat.getPrice(), seat.getBenefits())).collect(Collectors.toList());
-//        List<SeatInformationDTO> highlightedSeats =
-//                List.of(
-//                    new SeatInformationDTO(10, 1, ECONOMIC, 220),
-//                    new SeatInformationDTO(10, 2, ECONOMIC, 220),
-//                    new SeatInformationDTO(10, 3, ECONOMIC, 220)
-//                );
-//
-//        List<SeatInformationDTO> regularSeats =
-//                List.of(
-//                        new SeatInformationDTO(1, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 2, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 4, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(2, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(3, 6, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(8, 4, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(7, 1, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(6, 6, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS)
-//                );
 
         return new SeatsResultDTO(highlightedSeats, regularSeats);
     }
 
     private SeatsResultDTO getLongFlySeats() {
 
-        List<Seat> availableSeats = seatRepository.findByBooked("true");
+        List<Seat> availableSeats = findAllAvailableSeats();
 
         List<SeatInformationDTO> highlightedSeats = availableSeats.stream()
                 .filter(seat -> seat.getSeatClass().equals(BUSINESS) || seat.getSeatClass().equals(PREMIUM_ECONOMIC))
@@ -122,56 +87,24 @@ public class SeatsBookingServiceImplementation implements SeatsBookingService {
                 .filter(seat -> seat.getSeatClass().equals(ECONOMIC))
                 .map(seat -> new SeatInformationDTO(seat.getX(), seat.getY(), seat.getSeatClass(), seat.getPrice(), seat.getBenefits())).collect(Collectors.toList());
 
-//        List<SeatInformationDTO> highlightedSeats =
-//                List.of(
-//                        new SeatInformationDTO(1, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 2, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 4, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(2, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(3, 6, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(8, 4, PREMIUM_ECONOMIC, 360, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(7, 1, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(6, 6, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS)
-//                );
-//
-//        List<SeatInformationDTO> regularSeats =
-//                List.of(
-//                        new SeatInformationDTO(10, 1, ECONOMIC, 220),
-//                        new SeatInformationDTO(12, 2, ECONOMIC, 220),
-//                        new SeatInformationDTO(13, 2, ECONOMIC, 220)
-//                );
-
         return new SeatsResultDTO(highlightedSeats, regularSeats);
     }
 
     private SeatsResultDTO getDefaultSeats() {
-        List<Seat> availableSeats = seatRepository.findByBooked("true");
+        List<Seat> availableSeats = findAllAvailableSeats();
 
         List<SeatInformationDTO> highlightedSeats = Collections.emptyList();
 
         List<SeatInformationDTO> regularSeats = availableSeats.stream()
                 .map(seat -> new SeatInformationDTO(seat.getX(), seat.getY(), seat.getSeatClass(), seat.getPrice(), seat.getBenefits())).collect(Collectors.toList());
 
-//        List<SeatInformationDTO> highlightedSeats = Collections.emptyList();
-//
-//        List<SeatInformationDTO> regularSeats =
-//                List.of(
-//                        new SeatInformationDTO(10, 1, ECONOMIC, 220),
-//                        new SeatInformationDTO(12, 2, ECONOMIC, 220),
-//                        new SeatInformationDTO(13, 2, ECONOMIC, 220),
-//                        new SeatInformationDTO(1, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 2, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(1, 4, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(2, 1, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(3, 6, BUSINESS, 500, BUSINESS_BENEFITS),
-//                        new SeatInformationDTO(8, 4, PREMIUM_ECONOMIC, 360, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(7, 1, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS),
-//                        new SeatInformationDTO(6, 6, PREMIUM_ECONOMIC, 350, PREMIUM_ECONOMIC_BENEFITS)
-
-//                );
 
         return new SeatsResultDTO(highlightedSeats, regularSeats);
 
+    }
+
+    private List<Seat> findAllAvailableSeats() {
+        return seatRepository.findByBooked(true);
     }
 
     public SeatRepository getSeatRepository() {

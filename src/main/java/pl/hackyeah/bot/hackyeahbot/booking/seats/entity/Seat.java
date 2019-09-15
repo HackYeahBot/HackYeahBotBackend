@@ -5,12 +5,32 @@ import javax.persistence.*;
 @Entity
 public class Seat {
     private Long id;
-    private String booked;
+    private boolean booked;
     private int x;
     private int y;
     private String seatClass;
     private double price;
     private String benefits;
+
+    public Seat() {
+    }
+
+    public Seat(boolean booked, int x, int y, String seatClass, double price) {
+        this.booked = booked;
+        this.x = x;
+        this.y = y;
+        this.seatClass = seatClass;
+        this.price = price;
+    }
+
+    public Seat(boolean booked, int x, int y, String seatClass, double price, String benefits) {
+        this.booked = booked;
+        this.x = x;
+        this.y = y;
+        this.seatClass = seatClass;
+        this.price = price;
+        this.benefits = benefits;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,11 +42,11 @@ public class Seat {
         this.id = id;
     }
 
-    public String getBooked() {
+    public boolean getBooked() {
         return booked;
     }
 
-    public void setBooked(String booked) {
+    public void setBooked(boolean booked) {
         this.booked = booked;
     }
 

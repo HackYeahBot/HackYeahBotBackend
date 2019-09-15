@@ -7,17 +7,7 @@ import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.ExtrasInformationDTO;
 import pl.hackyeah.bot.hackyeahbot.booking.extras.entity.ExtrasResultDTO;
 import pl.hackyeah.bot.hackyeahbot.booking.seats.entity.TravelClass;
 import pl.hackyeah.bot.hackyeahbot.user.entity.UserPersona;
-import weka.classifiers.Classifier;
-import weka.classifiers.Evaluation;
-import weka.classifiers.trees.LMT;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.converters.ArffLoader;
 
-import java.io.File;
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.Set;
 import java.util.stream.Collectors;
 
