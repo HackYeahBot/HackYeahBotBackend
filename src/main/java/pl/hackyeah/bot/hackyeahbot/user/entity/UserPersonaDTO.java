@@ -4,6 +4,10 @@ public class UserPersonaDTO {
 
     private String userPersona;
 
+    public UserPersonaDTO(String userPersona) {
+        this.userPersona = userPersona;
+    }
+
     public String getUserPersona() {
         return userPersona;
     }

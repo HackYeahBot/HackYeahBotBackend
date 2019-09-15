@@ -1,0 +1,27 @@
+@RELATION problem-complexity
+
+@ATTRIBUTE from NUMERIC
+@ATTRIBUTE to NUMERIC
+@ATTRIBUTE adults NUMERIC
+@ATTRIBUTE childNumber NUMERIC
+@ATTRIBUTE duration NUMERIC
+@ATTRIBUTE profile {business,family,long_fly}
+
+@DATA
+1,1,1,0,7,long_fly
+2,1,1,0,8,long_fly
+3,1,1,0,9,long_fly
+3,5,1,0,2,business
+4,6,1,0,2,business
+5,7,1,2,2,family
+6,7,1,2,1,family
+1,2,1,0,1,business
+2,3,1,0,1,business
+3,6,1,0,3,business
+4,5,1,0,1,business
+5,7,2,1,2,family
+6,7,2,1,1,family
+1,7,1,2,6,family
+1,7,1,3,6,family
+1,7,1,1,6,family
+
