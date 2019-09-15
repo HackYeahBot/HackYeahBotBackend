@@ -9,10 +9,18 @@ import javax.persistence.Id;
 public class Extras {
 
     private Long id;
-    private String userPersona;
-    private String travelClass;
     private String name;
     private String description;
+    private String label;
+
+    public Extras() {
+    }
+
+    public Extras(String name, String label, String description) {
+        this.name = name;
+        this.label = label;
+        this.description = description;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,22 +30,6 @@ public class Extras {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUserPersona() {
-        return userPersona;
-    }
-
-    public void setUserPersona(String userPersona) {
-        this.userPersona = userPersona;
-    }
-
-    public String getTravelClass() {
-        return travelClass;
-    }
-
-    public void setTravelClass(String travelClass) {
-        this.travelClass = travelClass;
     }
 
     public String getName() {
@@ -54,6 +46,14 @@ public class Extras {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 }
 

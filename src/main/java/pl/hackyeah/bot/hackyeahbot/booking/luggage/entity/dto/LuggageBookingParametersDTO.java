@@ -1,4 +1,4 @@
-package pl.hackyeah.bot.hackyeahbot.booking.luggage.entity;
+package pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.dto;
 
 public class LuggageBookingParametersDTO {
 

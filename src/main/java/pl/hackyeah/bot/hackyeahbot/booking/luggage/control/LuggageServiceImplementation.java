@@ -3,6 +3,8 @@ package pl.hackyeah.bot.hackyeahbot.booking.luggage.control;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.*;
+import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.dto.LuggageInformationDTO;
+import pl.hackyeah.bot.hackyeahbot.booking.luggage.entity.dto.LuggageResultDTO;
 
 import java.util.Arrays;
 import java.util.List;
